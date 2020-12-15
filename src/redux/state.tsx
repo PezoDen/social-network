@@ -51,7 +51,7 @@ let state: RootStateType = {
       {id: 4, name: 'Sasha'},
       {id: 5, name: 'Victor'},
       {id: 6, name: 'Valera'},
-      {id: 7, name: 'Vasia'},
+
     ],
     messages: [
       {id: 1, message: 'Hi'},
