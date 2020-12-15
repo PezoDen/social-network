@@ -1,0 +1,14 @@
+.nav {
+    background-color: #ee0050;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.item a  {
+    text-decoration: none;
+    color: white;
+}
+.item a.active{
+    color: gold;
+}
