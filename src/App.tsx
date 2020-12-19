@@ -8,16 +8,15 @@ import {Route} from 'react-router-dom';
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
-import {DialogsType, MessagesType, PostsType} from "./redux/state";
+import {ActionsTypes, DialogsType, MessagesType, PostsType} from "./redux/state";
+
 
 type StatePropsType = {
   posts: Array<PostsType>
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>
   newPostText: string
-  addPostCallback: (message: string) => void
-  changeNewTextCallback: (newText: string) => void
-
+  dispatch: (action: ActionsTypes) => void
 }
 
 function App(props: StatePropsType) {
@@ -29,9 +28,8 @@ function App(props: StatePropsType) {
 
         <Route exact={true} path={"/"} render={() => <Profile
           posts={props.posts}
-          addPostCallback={props.addPostCallback}
+          dispatch={props.dispatch}
           newPostText={props.newPostText}
-          changeNewTextCallback={props.changeNewTextCallback}
 
 
         />}/>
@@ -40,9 +38,8 @@ function App(props: StatePropsType) {
                render={() =>
                  <Profile
                    posts={props.posts}
-                   addPostCallback={props.addPostCallback}
+                   dispatch={props.dispatch}
                    newPostText={props.newPostText}
-                   changeNewTextCallback={props.changeNewTextCallback}
 
 
                  />}/>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import state, {addPost, changeNewTextCallback, RootStateType, subscribe} from "./redux/state";
+import store  from "./redux/state";
 
 
 export const renderEntireThree =()=> {
@@ -11,12 +11,11 @@ export const renderEntireThree =()=> {
     <React.StrictMode>
       <BrowserRouter>
         <App
-          posts={state.profilePage.posts}
-          dialogs={state.messagesPage.dialogs}
-          messages={state.messagesPage.messages}
-          newPostText={state.profilePage.newPostText}
-          addPostCallback={addPost}
-          changeNewTextCallback={changeNewTextCallback}
+          posts={store._state.profilePage.posts}
+          dialogs={store._state.messagesPage.dialogs}
+          messages={store._state.messagesPage.messages}
+          newPostText={store._state.profilePage.newPostText}
+          dispatch={store.dispatch.bind(store)}
         />
       </BrowserRouter>
 
@@ -25,4 +24,4 @@ export const renderEntireThree =()=> {
   );
 }
 renderEntireThree()
-subscribe(renderEntireThree)
+store.subscribe(renderEntireThree)
