@@ -8,10 +8,11 @@ import {Route} from 'react-router-dom';
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
-import {ActionsTypes, DialogsType, MessagesType, PostsType} from "./redux/state";
+import  {ActionsTypes, DialogsType, MessagesType, PostsType, RootStateType} from "./redux/state";
 
 
 type StatePropsType = {
+  store: RootStateType
   posts: Array<PostsType>
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>
@@ -30,8 +31,6 @@ function App(props: StatePropsType) {
           posts={props.posts}
           dispatch={props.dispatch}
           newPostText={props.newPostText}
-
-
         />}/>
 
         <Route path={"/profile"}
@@ -40,13 +39,13 @@ function App(props: StatePropsType) {
                    posts={props.posts}
                    dispatch={props.dispatch}
                    newPostText={props.newPostText}
-
-
                  />}/>
 
         <Route path={"/dialogs"} render={() => <Dialogs
-          dialogs={props.dialogs}
-          messages={props.messages}
+          // dialogs={props.dialogs}
+          store = {props.store.messagesPage}
+          dispatch={props.dispatch}
+          // messages={props.messages}
         />}/>
         <Route path={"/news"} render={() => <News/>}/>
         <Route path={"/music"} render={() => <Music/>}/>

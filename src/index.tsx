@@ -16,6 +16,7 @@ export const renderEntireThree =()=> {
           messages={store._state.messagesPage.messages}
           newPostText={store._state.profilePage.newPostText}
           dispatch={store.dispatch.bind(store)}
+          store = {store.getState()}
         />
       </BrowserRouter>
 

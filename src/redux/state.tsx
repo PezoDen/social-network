@@ -1,3 +1,7 @@
+import profilePageReducer, {PostActionTypes} from "./profilePage-reduser";
+import dialogsPageReducer, {SendActionTypes} from "./dialogsPage-reduser";
+import sidebarPageReducer from "./sidebarPage-reduser";
+
 export type PostsType = {
   id: number
   message: string
@@ -7,12 +11,14 @@ export type PostsType = {
 export type PostsPageType = {
   posts: Array<PostsType>
   newPostText: string
-
 }
+export type SidebarPageType = {}
+
 export type DialogsType = {
   id: number
   name: string
 }
+
 export type MessagesType = {
   id: number
   message: string
@@ -21,11 +27,13 @@ export type MessagesType = {
 export type MessagePageType = {
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>
+  newMessageBody: string
 }
 
 export type RootStateType = {
   profilePage: PostsPageType
   messagesPage: MessagePageType
+  sidebarPage: SidebarPageType
 }
 
 
@@ -37,19 +45,13 @@ export type StoreType = {
   dispatch: (action: ActionsTypes) => void
 
 }
-export type AddPostActionType = {
-  type: 'ADD-POST'
-  // newPostText: string
-}
-export type ChangeNewTextCallbackActionType = {
-  type: 'CHANGE-NEW-TEXT-CAllBACK'
-  newText: string
-}
-export type ActionsTypes = AddPostActionType | ChangeNewTextCallbackActionType
+
+export type ActionsTypes = PostActionTypes | SendActionTypes
 
 const ADD_Post = 'ADD-POST';
 const CHANGE_NEW_TEXT_CALLBACK = 'CHANGE-NEW-TEXT-CAllBACK';
-
+const CHANGE_NEW_MESSAGE_BODY = 'CHANGE-NEW-MESSAGE-BODY';
+const SEND_MESSAGE = 'SEND-MESSAGE';
 
 
 const store: StoreType = {
@@ -78,8 +80,10 @@ const store: StoreType = {
         {id: 4, message: 'Yo'},
         {id: 5, message: 'Yo'},
         {id: 6, message: 'Yo'},
-      ]
-    }
+      ],
+      newMessageBody: ""
+    },
+    sidebarPage: { },
   },
   _renderEntireThree() {
     console.log("state is changing")
@@ -92,31 +96,10 @@ const store: StoreType = {
     return this._state
   },
   dispatch(action) {
-    if (action.type === ADD_Post) {
-      const newPost: PostsType = {
-        id: new Date().getTime(),
-        message: this._state.profilePage.newPostText, //this._state.profilePage//
-        likesCount: 0
-      }
-      this._state.profilePage.posts.push(newPost)
-      this._state.profilePage.newPostText = ''
-      this._renderEntireThree()
-    } else if (action.type === CHANGE_NEW_TEXT_CALLBACK) {
-      this._state.profilePage.newPostText = action.newText
-      this._renderEntireThree()
+    this._state.profilePage = profilePageReducer(this._state.profilePage, action);
+    this._state.messagesPage = dialogsPageReducer(this._state.messagesPage, action);
+    this._state.sidebarPage = sidebarPageReducer(this._state.sidebarPage, action);
+        this._renderEntireThree()
     }
-
-  }
-
-}
-export const addPostActionCreator = () :AddPostActionType=> {
-  return {
-    type: ADD_Post
-  }
-}
-export const updateNewPostTextActionCreator = (text:string):ChangeNewTextCallbackActionType => {
-  return {
-    type: CHANGE_NEW_TEXT_CALLBACK, newText:text
-  }
 }
 export default store
