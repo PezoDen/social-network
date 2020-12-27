@@ -1,4 +1,4 @@
-import {ActionsTypes, PostsPageType, PostsType, StoreType} from "./state";
+import {ActionsTypes, PostsPageType} from "./state";
 
 const ADD_Post = 'ADD-POST';
 const CHANGE_NEW_TEXT_CALLBACK = 'CHANGE-NEW-TEXT-CAllBACK';

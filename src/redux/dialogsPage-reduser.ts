@@ -1,5 +1,4 @@
-import {ActionsTypes, MessagePageType, StoreType} from "./state";
-import {AddPostActionType, ChangeNewTextCallbackActionType} from "./profilePage-reduser";
+import {ActionsTypes, MessagePageType} from "./state";
 
 const CHANGE_NEW_MESSAGE_BODY = 'CHANGE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';

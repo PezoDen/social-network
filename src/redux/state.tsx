@@ -48,10 +48,6 @@ export type StoreType = {
 
 export type ActionsTypes = PostActionTypes | SendActionTypes
 
-const ADD_Post = 'ADD-POST';
-const CHANGE_NEW_TEXT_CALLBACK = 'CHANGE-NEW-TEXT-CAllBACK';
-const CHANGE_NEW_MESSAGE_BODY = 'CHANGE-NEW-MESSAGE-BODY';
-const SEND_MESSAGE = 'SEND-MESSAGE';
 
 
 const store: StoreType = {
