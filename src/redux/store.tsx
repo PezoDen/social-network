@@ -49,7 +49,6 @@ export type StoreType = {
 export type ActionsTypes = PostActionTypes | SendActionTypes
 
 
-
 const store: StoreType = {
   _state: {
     profilePage: {
@@ -79,7 +78,7 @@ const store: StoreType = {
       ],
       newMessageBody: ""
     },
-    sidebarPage: { },
+    sidebarPage: {},
   },
   _renderEntireThree() {
     console.log("state is changing")
@@ -95,7 +94,7 @@ const store: StoreType = {
     this._state.profilePage = profilePageReducer(this._state.profilePage, action);
     this._state.messagesPage = dialogsPageReducer(this._state.messagesPage, action);
     this._state.sidebarPage = sidebarPageReducer(this._state.sidebarPage, action);
-        this._renderEntireThree()
-    }
+    this._renderEntireThree()
+  }
 }
 export default store

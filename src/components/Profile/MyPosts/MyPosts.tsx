@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import { PostsType} from "../../../redux/state";
+import { PostsType} from "../../../redux/store";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {
@@ -26,7 +26,7 @@ export function MyPosts(props: MyPostsPropsType) {
   const newTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     props.dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
   }
-//proverka
+
   return (
     <div className={s.postBlock}>
       <h3>My posts</h3>
