@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import store from "./redux/store";
+import store from "./redux/redux-store";
 
 
 export const renderEntireThree = () => {
@@ -11,12 +11,7 @@ export const renderEntireThree = () => {
     <React.StrictMode>
       <BrowserRouter>
         <App
-          posts={store._state.profilePage.posts}
-          dialogs={store._state.messagesPage.dialogs}
-          messages={store._state.messagesPage.messages}
-          newPostText={store._state.profilePage.newPostText}
-          dispatch={store.dispatch.bind(store)}
-          store={store.getState()}
+          store={store}
         />
       </BrowserRouter>
 
@@ -25,4 +20,7 @@ export const renderEntireThree = () => {
   );
 }
 renderEntireThree()
-store.subscribe(renderEntireThree)
+
+store.subscribe( () => {
+  renderEntireThree();
+})

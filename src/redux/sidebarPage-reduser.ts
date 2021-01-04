@@ -1,6 +1,12 @@
 import {ActionsTypes, SidebarPageType} from "./store";
 
-const sidebarPageReducer = (state: SidebarPageType, action: ActionsTypes) => {
+
+const initialState:SidebarPageType = {
+
+}
+
+
+const sidebarPageReducer = (state:SidebarPageType = initialState, action: ActionsTypes) => {
   return state
 
 }
