@@ -7,8 +7,7 @@ import {Route} from 'react-router-dom';
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {StoreType} from "./redux/redux-store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type StatePropsType = {

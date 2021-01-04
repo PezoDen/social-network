@@ -32,11 +32,11 @@ const profilePageReducer = (state:PostsPageType = initialState , action: Actions
       };
       state.posts.push(newPost);
       state.newPostText = '';
-      return state;
+      return {...state};
 
     case CHANGE_NEW_TEXT_CALLBACK:
       state.newPostText = action.newText
-      return state;
+      return {...state};
 
     default:
       return state;
