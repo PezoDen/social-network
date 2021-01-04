@@ -35,7 +35,7 @@ const initialState:MessagePageType = {
 
 
 
-const dialogsPageReducer = (state: MessagePageType = initialState, action: ActionsTypes) => {
+const dialogsPageReducer = (state: MessagePageType = initialState, action: ActionsTypes): MessagePageType => {
 
   switch (action.type) {
     case CHANGE_NEW_MESSAGE_BODY:

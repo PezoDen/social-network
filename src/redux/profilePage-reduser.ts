@@ -22,7 +22,7 @@ const initialState:PostsPageType = {
   newPostText: "it-kamasutra",
 }
 
-const profilePageReducer = (state:PostsPageType = initialState , action: ActionsTypes) => {
+const profilePageReducer = (state:PostsPageType = initialState , action: ActionsTypes): PostsPageType => {
   switch (action.type) {
     case ADD_Post:
       const newPost = {

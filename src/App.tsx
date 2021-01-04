@@ -12,7 +12,8 @@ import {StoreType} from "./redux/redux-store";
 
 
 type StatePropsType = {
-  store: StoreType
+  //store: StoreType
+  // children:
 }
 
 function App(props: StatePropsType) {
@@ -23,7 +24,7 @@ function App(props: StatePropsType) {
       <div className={'app-wrapper-content'}>
 
         <Route exact={true} path={"/"} render={() => <Profile
-          store ={props.store}
+          // store ={props.store}
 
           // posts={props.posts}
           // dispatch={props.dispatch}
@@ -33,7 +34,7 @@ function App(props: StatePropsType) {
         <Route path={"/profile"}
                render={() =>
                  <Profile
-                   store ={props.store}
+                   // store ={props.store}
                    // posts={props.posts}
                    // dispatch={props.dispatch}
                    // newPostText={props.newPostText}
@@ -41,7 +42,7 @@ function App(props: StatePropsType) {
 
         <Route path={"/dialogs"} render={() => <DialogsContainer
           // dialogs={props.dialogs}
-          store ={props.store}
+          // store ={props.store}
 
 
           // store = {props.store.messagesPage}

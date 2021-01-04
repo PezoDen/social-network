@@ -8,8 +8,12 @@ let reducers = combineReducers({
   messagesPage: dialogsPageReducer,
   sidebarPage: sidebarPageReducer
 })
- export type StoreType= typeof store
+
+export type RootState = ReturnType<typeof reducers>
+
 
 let store = createStore(reducers)
+
+export type StoreType= typeof store
 
 export default store
