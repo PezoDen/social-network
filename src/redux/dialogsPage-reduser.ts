@@ -4,7 +4,7 @@ const CHANGE_NEW_MESSAGE_BODY = 'CHANGE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 export type ChangeNewMessageBodyActionType = {
-  type: 'CHANGE-NEW-MESSAGE-BODY'
+  type: typeof CHANGE_NEW_MESSAGE_BODY
   body: string
 }
 export type SendMessageActionType = {
@@ -12,7 +12,7 @@ export type SendMessageActionType = {
 }
 export type SendActionTypes = ChangeNewMessageBodyActionType | SendMessageActionType
 
-const initialState:MessagePageType = {
+const initialState: MessagePageType = {
   dialogs: [
     {id: 1, name: 'Dimych'},
     {id: 2, name: 'Andrey'},
@@ -34,19 +34,22 @@ const initialState:MessagePageType = {
 }
 
 
-
-const dialogsPageReducer = (state: MessagePageType = initialState, action: ActionsTypes): MessagePageType => {
+const dialogsPageReducer = (state: MessagePageType = initialState, action: SendActionTypes): MessagePageType => {
 
   switch (action.type) {
     case CHANGE_NEW_MESSAGE_BODY:
-      state.newMessageBody = action.body
-      return {...state}
+      return  {
+        ...state,
+        newMessageBody: action.body
+      }
     case SEND_MESSAGE:
       let body = state.newMessageBody
-      state.newMessageBody = ''
-      state.messages.push({id: 6, message: body})
+      return  {
+        ...state,
+        newMessageBody: '',
+        messages: [...state.messages, {id: 6, message: body}]
+      }
 
-      return {...state}
     default:
       return state;
 

@@ -7,7 +7,7 @@ import store from "./redux/redux-store";
 import {Provider} from "react-redux";
 
 
-export const renderEntireThree = () => {
+// export const renderEntireThree = () => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
@@ -15,13 +15,12 @@ export const renderEntireThree = () => {
         <App />
         </Provider>
       </BrowserRouter>
-
     </React.StrictMode>,
     document.getElementById('root')
   );
-}
-renderEntireThree()
+// }
+// renderEntireThree()
 
-store.subscribe( () => {
-  renderEntireThree();
-})
+// store.subscribe( () => {
+//   renderEntireThree();
+// })

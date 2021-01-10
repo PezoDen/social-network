@@ -8,6 +8,7 @@ import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {ContainerUser} from "./components/Users/Users";
 
 
 type StatePropsType = {
@@ -22,32 +23,10 @@ function App(props: StatePropsType) {
       <Navbar/>
       <div className={'app-wrapper-content'}>
 
-        <Route exact={true} path={"/"} render={() => <Profile
-          // store ={props.store}
-
-          // posts={props.posts}
-          // dispatch={props.dispatch}
-          // newPostText={props.newPostText}
-        />}/>
-
-        <Route path={"/profile"}
-               render={() =>
-                 <Profile
-                   // store ={props.store}
-                   // posts={props.posts}
-                   // dispatch={props.dispatch}
-                   // newPostText={props.newPostText}
-                 />}/>
-
-        <Route path={"/dialogs"} render={() => <DialogsContainer
-          // dialogs={props.dialogs}
-          // store ={props.store}
-
-
-          // store = {props.store.messagesPage}
-          // dispatch={props.dispatch}
-          // messages={props.messages}
-        />}/>
+        <Route exact={true} path={"/"} render={() => <Profile/>}/>
+        <Route path={"/profile"} render={() => <Profile/>}/>
+        <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
+        <Route path={"/users"} render={() => <ContainerUser/>}/>
         <Route path={"/news"} render={() => <News/>}/>
         <Route path={"/music"} render={() => <Music/>}/>
         <Route path={"/settings"} render={() => <Settings/>}/>

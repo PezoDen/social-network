@@ -14,7 +14,7 @@ export type ChangeNewTextCallbackActionType = {
 }
 export type PostActionTypes = AddPostActionType | ChangeNewTextCallbackActionType
 
-const initialState:PostsPageType = {
+const initialState: PostsPageType = {
   posts: [
     {id: 1, message: 'Hi, how are you?', likesCount: 25},
     {id: 2, message: 'It\'s my first post !', likesCount: 15},
@@ -22,7 +22,7 @@ const initialState:PostsPageType = {
   newPostText: "it-kamasutra",
 }
 
-const profilePageReducer = (state:PostsPageType = initialState , action: ActionsTypes): PostsPageType => {
+const profilePageReducer = (state: PostsPageType = initialState, action: ActionsTypes): PostsPageType => {
   switch (action.type) {
     case ADD_Post:
       const newPost = {
@@ -30,14 +30,18 @@ const profilePageReducer = (state:PostsPageType = initialState , action: Actions
         message: state.newPostText, //this._state.profilePage//
         likesCount: 0
       };
-      state.posts.push(newPost);
-      state.newPostText = '';
-      return {...state};
+      return {
+        ...state,
+        posts: [...state.posts, newPost],
+        newPostText: ''
+      }
 
-    case CHANGE_NEW_TEXT_CALLBACK:
-      state.newPostText = action.newText
-      return {...state};
-
+    case CHANGE_NEW_TEXT_CALLBACK: {
+      return {
+        ...state,
+        newPostText: action.newText
+      }
+    }
     default:
       return state;
   }
