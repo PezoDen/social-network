@@ -5,6 +5,8 @@ import {ActionsTypes} from "../../redux/store";
 import {followAC, setUserAC, unfollowAC} from "../../redux/usersPage-reduser";
 import {UserStateType, UserType} from "../../redux/entities";
 import s from "./Users.module.css"
+import  axios from "axios";
+import userPhoto from "../../assets/images/ava.jpg"
 
 type MapStatePropsType = {
   users: Array<UserType>
@@ -19,25 +21,11 @@ type MapDispatchType = {
 
 export const Users = (props: MapStatePropsType & MapDispatchType) => {
     if (props.users.length === 0) {
-      props.setUsers([
-          {
-            id: 1,
-            photoUrl: 'https://yt3.ggpht.com/a/AATXAJw3czP6Txt6Yf7wrlnhPGdEQ14IEQcA9jg6INLk=s900-c-k-c0xffffffff-no-rj-mo',
-            followed: true,
-            fullName: 'Dmitry',
-            status: 'i am a boss',
-            location: {city: 'minsk', country: 'Belarus'}
-          },
-          {
-            id: 2,
-            photoUrl: 'https://24smi.org/public/media/resize/800x-/person/2018/07/01/iljalz9bridy-masiania.jpg',
-            followed: false,
-            fullName: 'Anton',
-            status: 'i am a teacher',
-            location: {city: 'minsk', country: 'Belarus'}
-          }
-        ]
-      )
+      axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+        props.setUsers(response.data.items
+        )
+
+      })
   }
   return <div>
     {
@@ -46,7 +34,7 @@ export const Users = (props: MapStatePropsType & MapDispatchType) => {
             <div className={s.users} key={u.id}>
               <span>
                 <div>
-                  <img className={s.img} src={u.photoUrl}/>
+                  <img className={s.img} src={u.photos.small !== null ? u.photos.small : userPhoto}/>
                 </div>
                 <div>
                   <button onClick={() => {
@@ -59,12 +47,12 @@ export const Users = (props: MapStatePropsType & MapDispatchType) => {
               </span>
               <span>
               <span>
-                <div>{u.fullName}</div>
+                <div>{u.name}</div>
                 <div>{u.status}</div>
               </span>
               <span>
-                <div>{u.location.country}</div>
-                <div>{u.location.city}</div></span>
+                <div>{"u.location.country"}</div>
+                <div>{"u.location.city"}</div></span>
              </span>
             </div>
           )
