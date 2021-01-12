@@ -1,4 +1,4 @@
-import {ActionsTypes, MessagePageType} from "./store";
+import {MessagePageType} from "./store";
 
 const CHANGE_NEW_MESSAGE_BODY = 'CHANGE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';

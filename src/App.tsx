@@ -8,7 +8,7 @@ import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {ContainerUser} from "./components/Users/Users";
+import {ContainerUser} from "./components/Users/UsersC";
 
 
 type StatePropsType = {

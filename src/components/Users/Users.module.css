@@ -1,7 +1,7 @@
 .users {
     display: flex;
     flex-direction: row;
-    padding-bottom: 10px;
+    padding: 10px;
     gap: 10px;
 
 }

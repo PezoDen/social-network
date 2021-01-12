@@ -1,40 +1,38 @@
 import React from "react";
-import {connect} from "react-redux";
-import {RootState} from "../../redux/redux-store";
-import {ActionsTypes} from "../../redux/store";
-import {followAC, setUserAC, unfollowAC} from "../../redux/usersPage-reduser";
-import {UserStateType, UserType} from "../../redux/entities";
+import {UserType} from "../../redux/entities";
 import s from "./Users.module.css"
-import  axios from "axios";
 import userPhoto from "../../assets/images/ava.jpg"
 
 type MapStatePropsType = {
   users: Array<UserType>
-}
-
-type MapDispatchType = {
   follow: (userId: number) => void
   unfollow: (userId: number) => void
-  setUsers: (users: Array<UserType>) => void
+  // setUsers: (users: Array<UserType>) => void
+  // getUsers: () => void
 
 }
 
-export const Users = (props: MapStatePropsType & MapDispatchType) => {
-    if (props.users.length === 0) {
-      axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-        props.setUsers(response.data.items
-        )
-
-      })
-  }
+export const Users = (props: MapStatePropsType) => {
+//   let getUsers = () => {
+//     if(props.users.length === 0
+// )
+//   {
+//     axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+//       props.setUsers(response.data.items
+//       )
+//
+//     })
+//   }
+// }
   return <div>
+    {/*<button onClick={props.getUsers}> Get Users</button>*/}
     {
       props.users.map(u => {
           return (
             <div className={s.users} key={u.id}>
               <span>
                 <div>
-                  <img className={s.img} src={u.photos.small !== null ? u.photos.small : userPhoto}/>
+                  <img alt={""} className={s.img} src={u.photos.small !== null ? u.photos.small : userPhoto}/>
                 </div>
                 <div>
                   <button onClick={() => {
@@ -62,27 +60,27 @@ export const Users = (props: MapStatePropsType & MapDispatchType) => {
   </div>
 }
 
-const mapStateToProps = (state: RootState): MapStatePropsType => {
-  return {
-    users: state.usersPage.users
-  }
-}
+// const mapStateToProps = (state: RootState): MapStatePropsType => {
+//   return {
+//     users: state.usersPage.users
+//   }
+// }
+//
+// const mapDispatchToProps = (dispatch: (action: ActionsTypes) => void): MapDispatchType => {
+//   // debugger
+//   return {
+//     follow: (userId: number) => {
+//       // debugger
+//       dispatch(followAC(userId))
+//     },
+//     unfollow: (userId: number) => {
+//       // debugger
+//       dispatch(unfollowAC(userId))
+//     },
+//     setUsers: (users: Array<UserType>) => {
+//       dispatch(setUserAC(users))
+//     }
+//   }
+// }
 
-const mapDispatchToProps = (dispatch: (action: ActionsTypes) => void): MapDispatchType => {
-  // debugger
-  return {
-    follow: (userId: number) => {
-      // debugger
-      dispatch(followAC(userId))
-    },
-    unfollow: (userId: number) => {
-      // debugger
-      dispatch(unfollowAC(userId))
-    },
-    setUsers: (users: Array<UserType>) => {
-      dispatch(setUserAC(users))
-    }
-  }
-}
-
-export const ContainerUser = connect(mapStateToProps, mapDispatchToProps)(Users)
+// export const ContainerUser = connect(mapStateToProps, mapDispatchToProps)(Users)

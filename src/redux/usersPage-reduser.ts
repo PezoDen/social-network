@@ -1,5 +1,4 @@
 import {UserStateType, UserType} from "./entities";
-import {execSync} from "child_process";
 
 // const FOLLOW = 'FOLLOW';
 // const UNFOLLOW = 'UNFOLLOW';
