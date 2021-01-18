@@ -14,4 +14,9 @@ location: {
 }
 export type UserStateType = {
   users: Array<UserType>
+  pageSize:number
+  totalUsersCount: number
+  currentPage: number
+
+
 }

@@ -11,3 +11,9 @@
     height: 120px;
     object-fit: cover;
 }
+.selectedPage{
+    font-weight: bold;
+}
+.cursor{
+    cursor: pointer;
+}

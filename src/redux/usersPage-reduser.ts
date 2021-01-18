@@ -1,40 +1,13 @@
 import {UserStateType, UserType} from "./entities";
 
-// const FOLLOW = 'FOLLOW';
-// const UNFOLLOW = 'UNFOLLOW';
-
-
 const initialState: UserStateType = {
-  users: [
-    // {id: 1, photoUrl: 'https://yt3.ggpht.com/a/AATXAJw3czP6Txt6Yf7wrlnhPGdEQ14IEQcA9jg6INLk=s900-c-k-c0xffffffff-no-rj-mo',followed: true, fullName: 'Dmitry', status: 'i am a boss', location: {city: 'minsk', country: 'Belarus'}},
-    // {
-    //   id: 2,
-    //   photoUrl:'https://24smi.org/public/media/resize/800x-/person/2018/07/01/iljalz9bridy-masiania.jpg',
-    //   followed: false,
-    //   fullName: 'Anton',
-    //   status: 'i am a teacher',
-    //   location: {city: 'minsk', country: 'Belarus'}
-    // },
-    // {
-    //   id: 3,
-    //   followed: true,
-    //   fullName: 'Andrew',
-    //   status: 'i am a schoolboy',
-    //   location: {city: 'minsk', country: 'Belarus'}
-    // },
-    // {
-    //   id: 4,
-    //   followed: false,
-    //   fullName: 'Den',
-    //   status: 'i am a schoolboy',
-    //   location: {city: 'moskow', country: 'Russia'}
-    // },
-  ]
+  users: [],
+  pageSize: 5,
+  totalUsersCount: 0,
+  currentPage: 2
 }
 
 const usersPageReducer = (state = initialState, action: UserActionType): UserStateType => {
- // debugger
-  // tehnical type after start app
   switch (action.type) {
     case "FOLLOW":
       return {
@@ -61,28 +34,42 @@ const usersPageReducer = (state = initialState, action: UserActionType): UserSta
       return {
         ...state,
         users: [...action.users]
-          }
+      }
+    case "SET_CURRENT_PAGE":
+      return {
+        ...state,
+        currentPage: action.currentPage
+      }
+    case "SET_TOTAL_USERS_COUNT":
+      return {
+        ...state,
+        totalUsersCount: action.totalUsersCount
+      }
 
     default:
       return state;
   }
 
 }
-export type UserActionType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC> |ReturnType<typeof setUserAC>
+export type UserActionType = ReturnType<typeof followAC>
+  | ReturnType<typeof unfollowAC>
+  | ReturnType<typeof setUserAC>
+  | ReturnType<typeof setCurrentPageAC>
+  | ReturnType<typeof setTotalUsersCountAC>
 
 export const followAC = (userId: number) => {
-
-  return {type: "FOLLOW", userId}as const
-   }
+  return {type: "FOLLOW", userId} as const
+}
 
 export const unfollowAC = (userId: number) => {
-  
   return {
     type: "UNFOLLOW",
     userId
   } as const
 }
 export const setUserAC = (users: Array<UserType>) => ({type: "SET_USERS", users} as const)
+export const setCurrentPageAC = (currentPage: number) => ({type: "SET_CURRENT_PAGE", currentPage} as const)
+export const setTotalUsersCountAC = (totalUsersCount: number) => ({type: "SET_TOTAL_USERS_COUNT", totalUsersCount} as const)
 
 export default usersPageReducer;
 

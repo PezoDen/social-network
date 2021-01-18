@@ -7,25 +7,29 @@ type MapStatePropsType = {
   users: Array<UserType>
   follow: (userId: number) => void
   unfollow: (userId: number) => void
-  // setUsers: (users: Array<UserType>) => void
-  // getUsers: () => void
-
+  pagesCount: number
+  currentPage: number
+  setCurrentPage: (page: number) => void
+  // changePage:
 }
 
 export const Users = (props: MapStatePropsType) => {
-//   let getUsers = () => {
-//     if(props.users.length === 0
-// )
-//   {
-//     axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-//       props.setUsers(response.data.items
-//       )
-//
-//     })
-//   }
-// }
+  let pages = []
+  for (let i = 1; i <= props.pagesCount; i++) {
+    pages.push(i)
+  }
   return <div>
-    {/*<button onClick={props.getUsers}> Get Users</button>*/}
+    <div>
+      {pages.map(p => {
+          return <span key={p}
+            className={(props.currentPage === p ? s.selectedPage : "") +" "+ s.cursor}
+            onClick={() => {props.setCurrentPage(p)}}
+          >
+            {p} </span>
+        }
+      )
+      }
+    </div>
     {
       props.users.map(u => {
           return (
@@ -60,27 +64,3 @@ export const Users = (props: MapStatePropsType) => {
   </div>
 }
 
-// const mapStateToProps = (state: RootState): MapStatePropsType => {
-//   return {
-//     users: state.usersPage.users
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch: (action: ActionsTypes) => void): MapDispatchType => {
-//   // debugger
-//   return {
-//     follow: (userId: number) => {
-//       // debugger
-//       dispatch(followAC(userId))
-//     },
-//     unfollow: (userId: number) => {
-//       // debugger
-//       dispatch(unfollowAC(userId))
-//     },
-//     setUsers: (users: Array<UserType>) => {
-//       dispatch(setUserAC(users))
-//     }
-//   }
-// }
-
-// export const ContainerUser = connect(mapStateToProps, mapDispatchToProps)(Users)

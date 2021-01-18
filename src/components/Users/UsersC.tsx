@@ -2,39 +2,46 @@ import React from "react";
 import {connect} from "react-redux";
 import {RootState} from "../../redux/redux-store";
 import {ActionsTypes} from "../../redux/store";
-import {followAC, setUserAC, unfollowAC} from "../../redux/usersPage-reduser";
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUserAC, unfollowAC} from "../../redux/usersPage-reduser";
 import {UserType} from "../../redux/entities";
 import axios from "axios";
 import {Users} from "./Users";
 
 type MapStatePropsType = {
   users: Array<UserType>
+  pageSize: number
+  totalUsersCount: number
+  pagesCount: number
+  currentPage: number
+
+
 }
 
 type MapDispatchType = {
   follow: (userId: number) => void
   unfollow: (userId: number) => void
   setUsers: (users: Array<UserType>) => void
-
+  setCurrentPage: (currentPage: number) => void
+  setTotalUsersCount:(totalCount: number) => void
 }
 
 class UsersC extends React.Component<MapStatePropsType & MapDispatchType> {
   componentDidMount(): void {
-    axios.get("https://social-network.samuraijs.com/api/1.0/users")
-      .then(response => {
-        this.props.setUsers(response.data.items)
-      })
-
+    this.changePage(this.props.currentPage)
   }
 
-  //  getUsers = () => {
-  //
-  // }
+  changePage = (pageNumber: number) => {
+    this.props.setCurrentPage(pageNumber)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+      .then(response => {
+        this.props.setUsers(response.data.items)
+        this.props.setTotalUsersCount(response.data.totalCount)
+      })
+  }
 
   render(): React.ReactNode {
     return <div>
-      <Users {...this.props}
-             // getUsers = {this.getUsers}
+      <Users {...this.props} setCurrentPage={this.changePage}
       />
     </div>
   }
@@ -42,7 +49,11 @@ class UsersC extends React.Component<MapStatePropsType & MapDispatchType> {
 
 const mapStateToProps = (state: RootState): MapStatePropsType => {
   return {
-    users: state.usersPage.users
+    users: state.usersPage.users,
+    pageSize: state.usersPage.pageSize,
+    totalUsersCount: state.usersPage.totalUsersCount,
+    pagesCount: Math.ceil(state.usersPage.totalUsersCount / state.usersPage.pageSize),
+    currentPage: state.usersPage.currentPage
   }
 }
 
@@ -59,6 +70,12 @@ const mapDispatchToProps = (dispatch: (action: ActionsTypes) => void): MapDispat
     },
     setUsers: (users: Array<UserType>) => {
       dispatch(setUserAC(users))
+    },
+    setCurrentPage: (pageNumber: number) => {
+      dispatch(setCurrentPageAC(pageNumber))
+    },
+    setTotalUsersCount: (totalCount: number) => {
+      dispatch(setTotalUsersCountAC(totalCount))
     }
   }
 }
