@@ -22,9 +22,10 @@ export const Users = (props: MapStatePropsType) => {
     <div>
       {pages.map(p => {
           return <span key={p}
-            className={(props.currentPage === p ? s.selectedPage : "") +" "+ s.cursor}
-            onClick={() => {props.setCurrentPage(p)}}
-          >
+                       className={(props.currentPage === p ? s.selectedPage : "") + " " + s.cursor}
+                       onClick={() => {
+                         props.setCurrentPage(p)
+                       }}>
             {p} </span>
         }
       )
