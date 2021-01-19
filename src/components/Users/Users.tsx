@@ -1,7 +1,9 @@
 import React from "react";
+
 import {UserType} from "../../redux/entities";
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/ava.jpg"
+import {NavLink} from "react-router-dom";
 
 type MapStatePropsType = {
   users: Array<UserType>
@@ -37,9 +39,12 @@ export const Users = (props: MapStatePropsType) => {
             <div className={s.users} key={u.id}>
               <span>
                 <div>
-                  <img alt={""} className={s.img} src={u.photos.small !== null ? u.photos.small : userPhoto}/>
+                  <NavLink to={'/profile/' + u.id}>
+                    <img alt={""} className={s.img} src={u.photos.small !== null ? u.photos.small : userPhoto}/>
+                  </NavLink>
                 </div>
                 <div>
+
                   <button onClick={() => {
                     // debugger
                     u.followed ? props.unfollow(u.id) : props.follow(u.id)

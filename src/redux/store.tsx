@@ -8,9 +8,31 @@ export type PostsType = {
   likesCount: number
 
 }
+export type ProfileType = {
+  userId: number
+  aboutMe:string
+  lookingForAJob: boolean
+  lookingForAJobDescription: string | null
+  fullName: string
+  contacts: {
+    github: string | null
+    vk: string | null
+    facebook: string | null
+    instagram: string | null
+    twitter: string | null
+    website: string | null
+    youtube: string | null
+    mainLink: string | null
+  }
+  photos: {
+    small: string | null
+    large: string | null
+  }
+}
 export type PostsPageType = {
   posts: Array<PostsType>
   newPostText: string
+  profile: ProfileType
 }
 export type SidebarPageType = {}
 

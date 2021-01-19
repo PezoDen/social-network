@@ -1,6 +1,5 @@
 import {
   addPostActionCreator,
-  ChangeNewTextCallbackActionType,
   updateNewPostTextActionCreator
 } from "../../../redux/profilePage-reduser";
 import {MyPosts} from "./MyPosts";
@@ -61,7 +60,7 @@ let mapStateToProps = (state: RootStateType) => {
 let mapDispatchToProps = (dispatch:(action:ActionsTypes) => void) => {
   return {
     updateNewPostText: (text:string) => {
-      let action: ChangeNewTextCallbackActionType = updateNewPostTextActionCreator(text)
+      let action = updateNewPostTextActionCreator(text)
       dispatch(action)
     },
     addPost: () => {

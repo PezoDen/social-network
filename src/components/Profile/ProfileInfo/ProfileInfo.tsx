@@ -1,9 +1,24 @@
 import React from "react";
 import s from './ProfileInfo.module.css'
+import {ProfileType} from "../../../redux/store";
+import userPhoto from "../../../assets/images/ava.jpg"
+import Preloader from "../../common/Preloader/Preloader";
 
-export function ProfileInfo() {
+type ProfileInfoPropsType = {
+  profile: ProfileType
+  // store: StoreType
+  // posts: Array<PostsType>
+  // newPostText:string
+  // dispatch: (action: ActionsTypes) => void
+
+}
+
+
+export function ProfileInfo(props:ProfileInfoPropsType) {
+  if (!props.profile) {
+    return <Preloader/>
+  }
     return (
-
         <div>
             <div>
                 <img
@@ -11,6 +26,12 @@ export function ProfileInfo() {
                     alt={''}/>
             </div>
             <div className={s.descriptionBlock}>
+              <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt="Фото"/>
+              <div>{props.profile.lookingForAJobDescription}</div>
+              <div> {props.profile.aboutMe}</div>
+              <div> {props.profile.contacts.facebook}</div>
+              <p> {props.profile.fullName}</p>
+              <b> {props.profile.userId}</b>
                 ava+description
             </div>
         </div>

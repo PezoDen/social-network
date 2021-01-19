@@ -9,6 +9,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {ContainerUser} from "./components/Users/UserApiComponent";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 type StatePropsType = {
@@ -23,8 +24,8 @@ function App(props: StatePropsType) {
       <Navbar/>
       <div className={'app-wrapper-content'}>
 
-        <Route exact={true} path={"/"} render={() => <Profile/>}/>
-        <Route path={"/profile"} render={() => <Profile/>}/>
+        <Route exact={true} path={"/"} render={() => <ProfileContainer/>}/>
+        <Route path={"/profile"} render={() => <ProfileContainer/>}/>
         <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
         <Route path={"/users"} render={() => <ContainerUser/>}/>
         <Route path={"/news"} render={() => <News/>}/>
