@@ -15,7 +15,7 @@ type ProfileInfoPropsType = {
 
 
 export function ProfileInfo(props:ProfileInfoPropsType) {
-  if (!props.profile) {
+  if (props.profile.userId < 0) {
     return <Preloader/>
   }
     return (
@@ -27,7 +27,7 @@ export function ProfileInfo(props:ProfileInfoPropsType) {
             </div>
             <div className={s.descriptionBlock}>
               <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt="Фото"/>
-              <div>{props.profile.lookingForAJobDescription}</div>
+              <div><b>что хочу:</b> {props.profile.lookingForAJobDescription}</div>
               <div> {props.profile.aboutMe}</div>
               <div> {props.profile.contacts.facebook}</div>
               <p> {props.profile.fullName}</p>
