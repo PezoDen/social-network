@@ -1,22 +1,4 @@
-import {ActionsTypes, PostsPageType, ProfileType} from "./store";
-
-// const ADD_Post = 'ADD-POST';
-// const CHANGE_NEW_TEXT_CALLBACK = 'CHANGE-NEW-TEXT-CAllBACK';
-// const SET_USER_PROFILE = 'SET-USER-PROFILE'
-// export type AddPostActionType = {
-//   type: 'ADD-POST'
-//   // newPostText: string
-// }
-// export type ChangeNewTextCallbackActionType = {
-//   type: 'CHANGE-NEW-TEXT-CAllBACK'
-//   newText: string
-//
-// }
-// export type SetUserProfileActionType = {
-//   type: 'SET-USER-PROFILE'
-//   profile: null
-//
-// }
+import {PostsPageType, ProfileType} from "./entities";
 
 
 const initialState: PostsPageType = {

@@ -3,12 +3,14 @@ import profilePageReducer from "./profilePage-reduser";
 import dialogsPageReducer from "./dialogsPage-reduser";
 import sidebarPageReducer from "./sidebarPage-reduser";
 import usersPageReducer from "./usersPage-reduser";
+import authReducer from "./auth-reduser";
 
 let reducers = combineReducers({
   profilePage: profilePageReducer,
   messagesPage: dialogsPageReducer,
   sidebarPage: sidebarPageReducer,
-  usersPage: usersPageReducer
+  usersPage: usersPageReducer,
+  auth: authReducer
 })
 
 export type RootState = ReturnType<typeof reducers>
@@ -16,6 +18,6 @@ export type RootState = ReturnType<typeof reducers>
 
 let store = createStore(reducers)
 
-export type StoreType= typeof store
+export type StoreType = typeof store
 
 export default store

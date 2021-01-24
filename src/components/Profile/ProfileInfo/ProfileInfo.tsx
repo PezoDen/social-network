@@ -1,8 +1,8 @@
 import React from "react";
 import s from './ProfileInfo.module.css'
-import {ProfileType} from "../../../redux/store";
 import userPhoto from "../../../assets/images/ava.jpg"
 import Preloader from "../../common/Preloader/Preloader";
+import {ProfileType} from "../../../redux/entities";
 
 type ProfileInfoPropsType = {
   profile: ProfileType

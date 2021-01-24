@@ -73,31 +73,6 @@ const mapStateToProps = (state: RootState): MapStatePropsType => {
   }
 }
 
-// const mapDispatchToProps = (dispatch: (action: ActionsTypes) => void): MapDispatchType => {
-//   // debugger
-//   return {
-//     follow: (userId: number) => {
-//       // debugger
-//       dispatch(followAC(userId))
-//     },
-//     unfollow: (userId: number) => {
-//       // debugger
-//       dispatch(unfollowAC(userId))
-//     },
-//     setUsers: (users: Array<UserType>) => {
-//       dispatch(setUserAC(users))
-//     },
-//     setCurrentPage: (pageNumber: number) => {
-//       dispatch(setCurrentPageAC(pageNumber))
-//     },
-//     setTotalUsersCount: (totalCount: number) => {
-//       dispatch(setTotalUsersCountAC(totalCount))
-//     },
-//     toggleIsFetching: (isFetching: boolean) => {
-//       dispatch(toggleIsFetchingAC(isFetching))
-//     }
-//   }
-// }
 
 export const ContainerUser = connect(
   mapStateToProps,

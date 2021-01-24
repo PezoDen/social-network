@@ -64,11 +64,18 @@ export type UserActionType = ReturnType<typeof follow>
   | ReturnType<typeof setTotalUsersCount>
   | ReturnType<typeof toggleIsFetching>
 
-export const follow = (userId: number) => {return {type: "FOLLOW", userId} as const}
-export const unfollow = (userId: number) => {return {type: "UNFOLLOW", userId} as const}
+export const follow = (userId: number) => {
+  return {type: "FOLLOW", userId} as const
+}
+export const unfollow = (userId: number) => {
+  return {type: "UNFOLLOW", userId} as const
+}
 export const setUsers = (users: Array<UserType>) => ({type: "SET_USERS", users} as const)
 export const setCurrentPage = (currentPage: number) => ({type: "SET_CURRENT_PAGE", currentPage} as const)
-export const setTotalUsersCount = (totalUsersCount: number) => ({type: "SET_TOTAL_USERS_COUNT", totalUsersCount} as const)
+export const setTotalUsersCount = (totalUsersCount: number) => ({
+  type: "SET_TOTAL_USERS_COUNT",
+  totalUsersCount
+} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: "TOGGLE IS FETCHING", isFetching} as const)
 
 export default usersPageReducer;

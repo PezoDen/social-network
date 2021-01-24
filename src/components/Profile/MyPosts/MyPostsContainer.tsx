@@ -3,8 +3,9 @@ import {
   updateNewPostTextActionCreator
 } from "../../../redux/profilePage-reduser";
 import {MyPosts} from "./MyPosts";
-import {ActionsTypes, RootStateType} from "../../../redux/store";
+import {ActionsTypes} from "../../../redux/store";
 import {connect} from "react-redux";
+import {RootState} from "../../../redux/redux-store";
 
 // type MyPostsPropsType = {
   //store: StoreType
@@ -51,7 +52,7 @@ import {connect} from "react-redux";
 //     </StoreContext.Consumer>
 //   )
 // }
-let mapStateToProps = (state: RootStateType) => {
+let mapStateToProps = (state: RootState) => {
   return {
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText

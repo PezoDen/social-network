@@ -2,10 +2,10 @@ import React from "react";
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {RootState} from "../../redux/redux-store";
 import {setUserProfile} from "../../redux/profilePage-reduser";
-import {ProfileType} from "../../redux/store";
 import {withRouter} from "react-router-dom";
+import {RootState} from "../../redux/redux-store";
+import {ProfileType} from "../../redux/entities";
 
 
 class ProfileContainer extends React.Component<any, any> {

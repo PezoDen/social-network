@@ -17,11 +17,19 @@ type MapStatePropsType = {
 
 export const Users = (props: MapStatePropsType) => {
   let pages = []
-  for (let i = 1; i <= props.pagesCount; i++) {
+  for (let i = props.currentPage - 5; i <= props.currentPage + 5 && i < props.pagesCount; i++) {
+    if (i < 2) {
+      i = 2
+    }
     pages.push(i)
   }
   return <div>
     <div>
+      <span className={(props.currentPage === 1 ? s.selectedPage : "") + " " + s.cursor}
+            onClick={() => {
+              props.setCurrentPage(1)
+            }}>1 </span>
+      {pages[0] !== 2 && <span>...</span>}
       {pages.map(p => {
           return <span key={p}
                        className={(props.currentPage === p ? s.selectedPage : "") + " " + s.cursor}
@@ -32,6 +40,11 @@ export const Users = (props: MapStatePropsType) => {
         }
       )
       }
+      {pages[pages.length - 1] !== props.pagesCount - 1 && <span>...</span>}
+      <span className={(props.currentPage === props.pagesCount ? s.selectedPage : "") + " " + s.cursor}
+            onClick={() => {
+              props.setCurrentPage(props.pagesCount)
+            }}>{props.pagesCount}</span>
     </div>
     {
       props.users.map(u => {
