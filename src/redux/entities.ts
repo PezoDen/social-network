@@ -2,21 +2,21 @@ import {PostsType} from "./store";
 
 export type UserType = {
   id: number
-  photos:  {
-  small: string | null
-  large: string | null
-}
-followed: boolean
-name:string
-status: string
-location: {
-  city: string
-  country: string
-}
+  photos: {
+    small: string | null
+    large: string | null
+  }
+  followed: boolean
+  name: string
+  status: string
+  location: {
+    city: string
+    country: string
+  }
 }
 export type UserStateType = {
   users: Array<UserType>
-  pageSize:number
+  pageSize: number
   totalUsersCount: number
   currentPage: number
   isFetching: boolean
@@ -31,11 +31,11 @@ export type AuthType = {
   userId: number
   login: string
   email: string
-  isAuth:boolean
+  isAuth: boolean
 }
 export type ProfileType = {
   userId: number
-  aboutMe:string
+  aboutMe: string
   lookingForAJob: boolean
   lookingForAJobDescription: string | null
   fullName: string

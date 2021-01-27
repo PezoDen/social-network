@@ -4,6 +4,7 @@ import {UserType} from "../../redux/entities";
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/ava.jpg"
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 type MapStatePropsType = {
   users: Array<UserType>
@@ -23,6 +24,7 @@ export const Users = (props: MapStatePropsType) => {
     }
     pages.push(i)
   }
+  debugger
   return <div>
     <div>
       <span className={(props.currentPage === 1 ? s.selectedPage : "") + " " + s.cursor}
@@ -48,6 +50,37 @@ export const Users = (props: MapStatePropsType) => {
     </div>
     {
       props.users.map(u => {
+          const onclickHandler = () => {
+            // debugger
+            u.followed
+              ?
+              axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                withCredentials: true,
+                headers: {
+                  "API-KEY": "743b3333-0516-4a4e-806b-b8ecd2b160d7"
+                }
+              })
+                .then(response => {
+                  if (response.data.resultCode === 0) {
+                    props.unfollow(u.id)
+                  }
+                })
+
+              :
+              axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                withCredentials: true,
+                headers: {
+                  "API-KEY": "743b3333-0516-4a4e-806b-b8ecd2b160d7"
+                }
+              })
+                .then(response => {
+                  debugger
+                  if (response.data.resultCode === 0) {
+                    props.follow(u.id)
+                  }
+                })
+
+          }
           return (
             <div className={s.users} key={u.id}>
               <span>
@@ -58,13 +91,11 @@ export const Users = (props: MapStatePropsType) => {
                 </div>
                 <div>
 
-                  <button onClick={() => {
-                    // debugger
-                    u.followed ? props.unfollow(u.id) : props.follow(u.id)
-                  }}>
+                  <button onClick={onclickHandler}>
                     {u.followed ? "unfollow" : "follow"}
                   </button>
                 </div>
+
               </span>
               <span>
               <span>
@@ -82,4 +113,7 @@ export const Users = (props: MapStatePropsType) => {
     }
   </div>
 }
+
+
+
 
