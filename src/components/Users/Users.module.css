@@ -17,3 +17,13 @@
 .cursor{
     cursor: pointer;
 }
+.unfollow{
+    background-color: #ee0050;
+}
+.follow{
+    background-color: greenyellow;
+}
+.buttonCenter{
+    display: flex;
+    justify-content: center;
+}

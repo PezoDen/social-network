@@ -1,5 +1,6 @@
 .nav {
-    background-color: #ee0050;
+    background: linear-gradient(#5d0000, #ee0050);
+    /*background-color: #ee0050;*/
     display: flex;
     flex-direction: column;
     padding: 20px;

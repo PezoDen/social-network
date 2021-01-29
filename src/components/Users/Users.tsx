@@ -24,7 +24,7 @@ export const Users = (props: MapStatePropsType) => {
     }
     pages.push(i)
   }
-  debugger
+  // debugger
   return <div>
     <div>
       <span className={(props.currentPage === 1 ? s.selectedPage : "") + " " + s.cursor}
@@ -74,7 +74,7 @@ export const Users = (props: MapStatePropsType) => {
                 }
               })
                 .then(response => {
-                  debugger
+                  // debugger
                   if (response.data.resultCode === 0) {
                     props.follow(u.id)
                   }
@@ -89,9 +89,9 @@ export const Users = (props: MapStatePropsType) => {
                     <img alt={""} className={s.img} src={u.photos.small !== null ? u.photos.small : userPhoto}/>
                   </NavLink>
                 </div>
-                <div>
+                <div className={s.buttonCenter}>
 
-                  <button onClick={onclickHandler}>
+                  <button onClick={onclickHandler} className={u.followed ? s.unfollow : s.follow }>
                     {u.followed ? "unfollow" : "follow"}
                   </button>
                 </div>
