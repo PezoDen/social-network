@@ -19,9 +19,11 @@
 }
 .unfollow{
     background-color: #ee0050;
+    cursor: help;
 }
 .follow{
     background-color: greenyellow;
+    cursor: help;
 }
 .buttonCenter{
     display: flex;

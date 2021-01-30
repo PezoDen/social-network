@@ -4,7 +4,6 @@ import {UserType} from "../../redux/entities";
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/ava.jpg"
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 
 type MapStatePropsType = {
   users: Array<UserType>
@@ -56,34 +55,9 @@ export const Users = (props: MapStatePropsType) => {
           const onclickHandler = () => {
             // debugger
             if (u.followed) {
-              props.toggleFollowingProgress(true,u.id)
-              axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                withCredentials: true,
-                headers: {
-                  "API-KEY": "743b3333-0516-4a4e-806b-b8ecd2b160d7"
-                }
-              })
-                .then(response => {
-                  if (response.data.resultCode === 0) {
-                    props.unfollow(u.id)
-                  }
-                  props.toggleFollowingProgress(false,u.id)
-                })
+              props.unfollow(u.id)
             } else {
-              props.toggleFollowingProgress(true,u.id)
-              axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                withCredentials: true,
-                headers: {
-                  "API-KEY": "743b3333-0516-4a4e-806b-b8ecd2b160d7"
-                }
-              })
-                .then(response => {
-                  // debugger
-                  if (response.data.resultCode === 0) {
-                    props.follow(u.id)
-                  }
-                  props.toggleFollowingProgress(false,u.id)
-                })
+              props.follow(u.id)
             }
           }
           return (
