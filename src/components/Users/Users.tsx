@@ -13,6 +13,9 @@ type MapStatePropsType = {
   pagesCount: number
   currentPage: number
   setCurrentPage: (page: number) => void
+  followingInProgress: number[]
+  toggleFollowingProgress: (isFollowing: boolean, userId: number) => void
+
   // changePage:
 }
 
@@ -52,8 +55,8 @@ export const Users = (props: MapStatePropsType) => {
       props.users.map(u => {
           const onclickHandler = () => {
             // debugger
-            u.followed
-              ?
+            if (u.followed) {
+              props.toggleFollowingProgress(true,u.id)
               axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                 withCredentials: true,
                 headers: {
@@ -64,9 +67,10 @@ export const Users = (props: MapStatePropsType) => {
                   if (response.data.resultCode === 0) {
                     props.unfollow(u.id)
                   }
+                  props.toggleFollowingProgress(false,u.id)
                 })
-
-              :
+            } else {
+              props.toggleFollowingProgress(true,u.id)
               axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                 withCredentials: true,
                 headers: {
@@ -78,8 +82,9 @@ export const Users = (props: MapStatePropsType) => {
                   if (response.data.resultCode === 0) {
                     props.follow(u.id)
                   }
+                  props.toggleFollowingProgress(false,u.id)
                 })
-
+            }
           }
           return (
             <div className={s.users} key={u.id}>
@@ -91,7 +96,9 @@ export const Users = (props: MapStatePropsType) => {
                 </div>
                 <div className={s.buttonCenter}>
 
-                  <button onClick={onclickHandler} className={u.followed ? s.unfollow : s.follow }>
+                  <button onClick={onclickHandler}
+                          className={u.followed ? s.unfollow : s.follow}
+                          disabled={props.followingInProgress.some(id => id === u.id)}>
                     {u.followed ? "unfollow" : "follow"}
                   </button>
                 </div>
