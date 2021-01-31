@@ -34,8 +34,8 @@ import {RootState} from "../../redux/redux-store";
 // }
 const mapStateToProps = (state: RootState) => {
   return {
-    dialogsPage: state.messagesPage
-
+    dialogsPage: state.messagesPage,
+    isAuth: state.auth.isAuth
   }
 }
 const mapDispatchToProps = (dispatch:(action:ActionsTypes) => void) => {

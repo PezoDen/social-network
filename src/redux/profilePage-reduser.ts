@@ -1,4 +1,7 @@
 import {PostsPageType, ProfileType} from "./entities";
+import {usersAPI} from "../API/api";
+import {ThunkAction} from "redux-thunk";
+import {RootState} from "./redux-store";
 
 
 const initialState: PostsPageType = {
@@ -64,15 +67,13 @@ export type PostActionTypes = ReturnType<typeof addPostActionCreator>
   | ReturnType<typeof setUserProfile>
   | ReturnType<typeof updateNewPostTextActionCreator>
 
-export const addPostActionCreator = () => {
-  return {type: 'ADD-POST'} as const
+export const addPostActionCreator = () => {return {type: 'ADD-POST'} as const}
+export const setUserProfile = (profile: ProfileType) => {return {type: 'SET-USER-PROFILE', profile} as const}
+export const getUserProfile = (userId: number):ThunkAction<void, RootState, unknown, PostActionTypes> => (dispatch) => {
+    usersAPI.getProfile(userId).then(response => {
+      dispatch(setUserProfile(response.data))
+    })
 }
-export const setUserProfile = (profile: ProfileType) => {
-  return {type: 'SET-USER-PROFILE', profile} as const
-}
-export const updateNewPostTextActionCreator = (text: string) => {
-  return {
-    type: 'CHANGE-NEW-TEXT-CAllBACK', newText: text
-  }as const
-}
+export const updateNewPostTextActionCreator = (text: string) => {return {type: 'CHANGE-NEW-TEXT-CAllBACK', newText: text}as const}
+
 export default profilePageReducer;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ProfileType} from "../redux/entities";
 
 const instance = axios.create({
   withCredentials: true,
@@ -16,22 +17,19 @@ export const usersAPI = {
       });
   },
   follow(userId:number) {
-    return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+    return instance.post(`follow/${userId}`)
   },
   unfollow(userId:number){
-    return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+    return instance.delete(`follow/${userId}`)
+  },
+  getProfile (userId:number) {
+    return instance.get<ProfileType>(`profile/` + userId)
   }
 }
+export const authAPI = {
+  me () {
+    return instance.get(`auth/me`)
+  },
 
-// export const getUsers = (currentPage=1,pageSize=10) => {
-//   return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-//     .then(response => {
-//       return response.data
-//     });
-// }
-// export const getUsers2 = (currentPage=1,pageSize=10) => {
-//   return instance.get(`follow?page=${currentPage}&count=${pageSize}`)
-//     .then(response => {
-//       return response.data
-//     });
-// }
+}
+
