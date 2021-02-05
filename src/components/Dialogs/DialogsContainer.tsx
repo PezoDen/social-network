@@ -3,39 +3,11 @@ import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {ActionsTypes} from "../../redux/store";
 import {RootState} from "../../redux/redux-store";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
-// type DialogsPropsType = {
-//   // dispatch: (action: ActionsTypes) => void
-//   // store: MessagePageType
-//
-// }
-// export const DialogsContainer = (props: DialogsPropsType) => {
-//
-//
-//   return <StoreContext.Consumer>
-//     {(store) => {
-//       // let state = store.getState().messagesPage
-//       //
-//       let onSendMessageClick = () => {
-//         store.dispatch(sendMessageCreator())
-//
-//       }
-//       let onNewMessageChange = (body: string) => {
-//         store.dispatch(updateNewMessageBodyCreator(body))
-//
-//       }
-//       return <Dialogs
-//         updateNewMessageBody={onNewMessageChange}
-//         sendMessage={onSendMessageClick}
-//         dialogsPage={store.getState().messagesPage}/>
-//     }
-//     }
-//   </StoreContext.Consumer>
-// }
 const mapStateToProps = (state: RootState) => {
   return {
     dialogsPage: state.messagesPage,
-    isAuth: state.auth.isAuth
   }
 }
 const mapDispatchToProps = (dispatch:(action:ActionsTypes) => void) => {
@@ -50,6 +22,8 @@ const mapDispatchToProps = (dispatch:(action:ActionsTypes) => void) => {
   }
 }
 
-const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
+
+
+const DialogsContainer = (connect(mapStateToProps,mapDispatchToProps)(withAuthRedirect(Dialogs)))
 
 export default DialogsContainer;

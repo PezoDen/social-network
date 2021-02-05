@@ -6,21 +6,17 @@ import {MessagePageType} from "../../redux/store";
 import { Redirect } from "react-router-dom";
 
 type DialogsPropsType = {
-  // dispatch: (action: ActionsTypes) => void
-  // store: MessagePageType
   dialogsPage: MessagePageType
   sendMessage: () => void
   updateNewMessageBody: (body: string) => void
-  isAuth: boolean
-
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
 
   let state = props.dialogsPage
 
-  let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>)
-  let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id}/>)
+  let dialogsElements = state.dialogs.map((d,i) => <DialogItem  name={d.name} key={d.id} id={d.id}/>)
+  let messagesElements = state.messages.map((m,i) => <Message key={i} message={m.message}/>)
   let newMessagesBody = state.newMessageBody
   let onSendMessageClick = () => {
     props.sendMessage();
@@ -32,7 +28,6 @@ export const Dialogs = (props: DialogsPropsType) => {
     props.updateNewMessageBody(body)
 
   }
-  if (!props.isAuth) return <Redirect to={"/login"}/>
 
 
   return (

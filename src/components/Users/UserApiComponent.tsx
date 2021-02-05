@@ -11,6 +11,7 @@ import {
 import {UserType} from "../../redux/entities";
 import {Users} from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type MapStatePropsType = {
   users: Array<UserType>
@@ -34,18 +35,6 @@ class UserApiComponent extends React.Component<MapStatePropsType & MapDispatchTy
   componentDidMount(): void {
     this.props.getUsersThunkCreator(this.props.currentPage)
   }
-
-  // changePage = (pageNumber: number) => {
-  //   // this.props.setCurrentPage(pageNumber)
-  //
-  //   this.props.getUsersThunkCreator
-  //   // usersAPI.getUsers(pageNumber,this.props.pageSize).then(data => {
-  //   //     this.props.toggleIsFetching(false)
-  //   //     this.props.setUsers(data.items)
-  //   //     this.props.setTotalUsersCount(data.totalCount)
-  //   //
-  //   //   })
-  // }
 
   render(): React.ReactNode {
     return <>
@@ -77,9 +66,9 @@ const mapStateToProps = (state: RootState): MapStatePropsType => {
 }
 
 
-export const ContainerUser = connect<MapStatePropsType, MapDispatchType, {}, RootState>(
+export const ContainerUser = withAuthRedirect( connect<MapStatePropsType, MapDispatchType, {}, RootState>(
   mapStateToProps,
   {
     follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsersThunkCreator
-  })(UserApiComponent)
+  })(UserApiComponent))
 
