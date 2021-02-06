@@ -6,10 +6,11 @@ import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {ContainerUser} from "./components/Users/UserApiComponent";
+
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import UserApiComponent from "./components/Users/UserApiComponent";
 
 
 type StatePropsType = {
@@ -27,7 +28,7 @@ function App(props: StatePropsType) {
         <Route exact={true} path={"/"} render={() => <ProfileContainer/>}/>
         <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
         <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
-        <Route path={"/users"} render={() => <ContainerUser/>}/>
+        <Route path={"/users"} render={() => <UserApiComponent/>}/>
         <Route path={"/news"} render={() => <News/>}/>
         <Route path={"/music"} render={() => <Music/>}/>
         <Route path={"/settings"} render={() => <Settings/>}/>
