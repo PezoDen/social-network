@@ -3,14 +3,11 @@ import s from './ProfileInfo.module.css'
 import userPhoto from "../../../assets/images/ava.jpg"
 import Preloader from "../../common/Preloader/Preloader";
 import {ProfileType} from "../../../redux/entities";
+import ProfileStatus from "./ProfileStatus";
+
 
 type ProfileInfoPropsType = {
   profile: ProfileType
-  // store: StoreType
-  // posts: Array<PostsType>
-  // newPostText:string
-  // dispatch: (action: ActionsTypes) => void
-
 }
 
 
@@ -20,13 +17,14 @@ export function ProfileInfo(props:ProfileInfoPropsType) {
   }
     return (
         <div>
-            <div>
-                <img
-                    src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"
-                    alt={''}/>
-            </div>
+            {/*<div>*/}
+            {/*    <img*/}
+            {/*        src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"*/}
+            {/*        alt={''}/>*/}
+            {/*</div>*/}
             <div className={s.descriptionBlock}>
               <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt="Фото"/>
+              <ProfileStatus status={"hello my friends"}/>
               <div><b>что хочу:</b> {props.profile.lookingForAJobDescription}</div>
               <div> {props.profile.aboutMe}</div>
               <div> {props.profile.contacts.facebook}</div>
