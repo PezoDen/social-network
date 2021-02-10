@@ -26,6 +26,7 @@ export type UserStateType = {
 export type PostsPageType = {
   posts: Array<PostsType>
   newPostText: string
+  status: string
   profile: ProfileType
 }
 export type AuthType = {
@@ -41,14 +42,16 @@ export type ProfileType = {
   lookingForAJobDescription: string | null
   fullName: string
   contacts: {
-    github: string | null
-    vk: string | null
-    facebook: string | null
-    instagram: string | null
-    twitter: string | null
-    website: string | null
-    youtube: string | null
-    mainLink: string | null
+    [key: string]: string | null
+
+    // github: string | null
+    // vk: string | null
+    // facebook: string | null
+    // instagram: string | null
+    // twitter: string | null
+    // website: string | null
+    // youtube: string | null
+    // mainLink: string | null
   }
   photos: {
     small: string | null

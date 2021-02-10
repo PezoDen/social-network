@@ -6,6 +6,9 @@ import {ProfileType} from "../../redux/entities";
 
 type ProfilePropsType = {
   profile: ProfileType
+  status: string
+  updateStatus: (status: string) => void
+
 }
 
 export function Profile(props:ProfilePropsType) {
@@ -13,7 +16,9 @@ export function Profile(props:ProfilePropsType) {
 
   return (
     <div>
-      <ProfileInfo profile={props.profile}/>
+      <ProfileInfo profile={props.profile}
+                   status={props.status}
+                   updateStatus={props.updateStatus}/>
       <MyPostsContainer/>
     </div>
   )

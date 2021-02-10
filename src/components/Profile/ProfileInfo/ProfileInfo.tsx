@@ -8,6 +8,9 @@ import ProfileStatus from "./ProfileStatus";
 
 type ProfileInfoPropsType = {
   profile: ProfileType
+  status: string
+  updateStatus: (status: string) => void
+
 }
 
 
@@ -23,8 +26,9 @@ export function ProfileInfo(props:ProfileInfoPropsType) {
             {/*        alt={''}/>*/}
             {/*</div>*/}
             <div className={s.descriptionBlock}>
-              <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt="Фото"/>
-              <ProfileStatus status={"hello my friends"}/>
+              <img height={'300px'} src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt="Фото"/>
+              <ProfileStatus status={props.status}
+                             updateStatus={props.updateStatus}/>
               <div><b>что хочу:</b> {props.profile.lookingForAJobDescription}</div>
               <div> {props.profile.aboutMe}</div>
               <div> {props.profile.contacts.facebook}</div>
