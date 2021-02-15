@@ -5,13 +5,14 @@ import sidebarPageReducer from "./sidebarPage-reduser";
 import usersPageReducer from "./usersPage-reduser";
 import authReducer from "./auth-reduser";
 import thunkMiddleware from "redux-thunk";
-
+import {reducer as formReducer} from "redux-form"
 let reducers = combineReducers({
   profilePage: profilePageReducer,
   messagesPage: dialogsPageReducer,
   sidebarPage: sidebarPageReducer,
   usersPage: usersPageReducer,
-  auth: authReducer
+  auth: authReducer,
+  form: formReducer
 })
 
 export type RootState = ReturnType<typeof reducers>
