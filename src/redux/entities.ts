@@ -1,4 +1,6 @@
-import {PostsType} from "./store";
+import {PostActionTypes} from "./profilePage-reduser";
+import {SendActionTypes} from "./dialogsPage-reduser";
+import {UserActionType} from "./usersPage-reduser";
 
 export type UserType = {
   id: number
@@ -22,10 +24,16 @@ export type UserStateType = {
   isFetching: boolean
   followingInProgress: number[]
 }
+export type PostsType = {
+  id: number
+  message: string
+  likesCount: number
+
+}
 
 export type PostsPageType = {
   posts: Array<PostsType>
-  newPostText: string
+  // newPostText: string
   status: string
   profile: ProfileType
 }
@@ -58,4 +66,21 @@ export type ProfileType = {
     large: string | null
   }
 }
+export type DialogsType = {
+  id: number
+  name: string
+}
 
+export type MessagesType = {
+  id: number
+  message: string
+}
+
+
+export type ActionsTypes = PostActionTypes | SendActionTypes | UserActionType// }
+export type SidebarPageType = {}
+export type MessagePageType = {
+  dialogs: Array<DialogsType>
+  messages: Array<MessagesType>
+  newMessageBody: string
+}

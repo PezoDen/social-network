@@ -1,18 +1,12 @@
-import {MessagePageType} from "./store";
-
-const CHANGE_NEW_MESSAGE_BODY = 'CHANGE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
-export type ChangeNewMessageBodyActionType = {
-  type: typeof CHANGE_NEW_MESSAGE_BODY
-  body: string
-}
 export type SendMessageActionType = {
-  type: 'SEND-MESSAGE'
+  type: 'SEND-MESSAGE',
+  newMessageBody: string
 }
-export type SendActionTypes = ChangeNewMessageBodyActionType | SendMessageActionType
+export type SendActionTypes = SendMessageActionType
 
-const initialState: MessagePageType = {
+const initialState = {
   dialogs: [
     {id: 1, name: 'Dimych'},
     {id: 2, name: 'Andrey'},
@@ -30,23 +24,16 @@ const initialState: MessagePageType = {
     {id: 5, message: 'Yo'},
     {id: 6, message: 'Yo'},
   ],
-  newMessageBody: ""
 }
 
 
-const dialogsPageReducer = (state: MessagePageType = initialState, action: SendActionTypes): MessagePageType => {
+const dialogsPageReducer = (state = initialState, action: SendActionTypes) => {
 
   switch (action.type) {
-    case CHANGE_NEW_MESSAGE_BODY:
-      return  {
-        ...state,
-        newMessageBody: action.body
-      }
     case SEND_MESSAGE:
-      let body = state.newMessageBody
+      let body = action.newMessageBody
       return  {
         ...state,
-        newMessageBody: '',
         messages: [...state.messages, {id: 6, message: body}]
       }
 
@@ -55,14 +42,10 @@ const dialogsPageReducer = (state: MessagePageType = initialState, action: SendA
 
   }
 }
-export const sendMessageCreator = (): SendMessageActionType => {
+export const sendMessageCreator = (newMessageBody:string): SendMessageActionType => {
   return {
-    type: SEND_MESSAGE
-  }
-}
-export const updateNewMessageBodyCreator = (body: string): ChangeNewMessageBodyActionType => {
-  return {
-    type: CHANGE_NEW_MESSAGE_BODY, body: body
+    type: SEND_MESSAGE,
+    newMessageBody:newMessageBody
   }
 }
 

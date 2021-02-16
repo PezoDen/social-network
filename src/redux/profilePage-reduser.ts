@@ -9,7 +9,7 @@ const initialState: PostsPageType = {
     {id: 1, message: 'Hi, how are you?', likesCount: 25},
     {id: 2, message: 'It\'s my first post !', likesCount: 15},
   ],
-  newPostText: "it-kamasutra",
+  // newPostText: "it-kamasutra",
   status: "",
   profile: {
     aboutMe: "",
@@ -39,21 +39,14 @@ const profilePageReducer = (state: PostsPageType = initialState, action: PostAct
     case 'ADD-POST':
       const newPost = {
         id: new Date().getTime(),
-        message: state.newPostText, //this._state.profilePage//
+        message: action.newPostText, //this._state.profilePage//
         likesCount: 0
       };
       return {
         ...state,
         posts: [...state.posts, newPost],
-        newPostText: ''
       };
 
-    case 'CHANGE-NEW-TEXT-CAllBACK': {
-      return {
-        ...state,
-        newPostText: action.newText
-      }
-    }
     case  'SET-USER-PROFILE': {
       return {
         ...state,
@@ -74,10 +67,10 @@ const profilePageReducer = (state: PostsPageType = initialState, action: PostAct
 export type PostActionTypes = ReturnType<typeof addPostActionCreator>
   | ReturnType<typeof setUserProfile>
   | ReturnType<typeof setStatus>
-  | ReturnType<typeof updateNewPostTextActionCreator>
 
-export const addPostActionCreator = () => {
-  return {type: 'ADD-POST'} as const
+export const addPostActionCreator = (newPostText:string) => {
+  return {type: 'ADD-POST',
+    newPostText} as const
 }
 export const setUserProfile = (profile: ProfileType) => {
   return {type: 'SET-USER-PROFILE', profile} as const
@@ -102,9 +95,6 @@ export const updateStatus = (status: string): ThunkAction<void, RootState, unkno
         dispatch(setStatus(status))
       }
     })
-}
-export const updateNewPostTextActionCreator = (text: string) => {
-  return {type: 'CHANGE-NEW-TEXT-CAllBACK', newText: text} as const
 }
 
 export default profilePageReducer;

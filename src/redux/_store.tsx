@@ -1,13 +1,9 @@
-import {PostActionTypes} from "./profilePage-reduser";
-import {SendActionTypes} from "./dialogsPage-reduser";
-import {UserActionType} from "./usersPage-reduser";
-
-export type PostsType = {
-  id: number
-  message: string
-  likesCount: number
-
-}
+// export type PostsType = {
+//   id: number
+//   message: string
+//   likesCount: number
+//
+// }
 // export type ProfileType = {
 //   userId: number
 //   aboutMe:string
@@ -33,24 +29,16 @@ export type PostsType = {
 //   posts: Array<PostsType>
 //   newPostText: string
 //   profile: ProfileType
+
+// export type DialogsType = {
+//   id: number
+//   name: string
 // }
-export type SidebarPageType = {}
-
-export type DialogsType = {
-  id: number
-  name: string
-}
-
-export type MessagesType = {
-  id: number
-  message: string
-}
-
-export type MessagePageType = {
-  dialogs: Array<DialogsType>
-  messages: Array<MessagesType>
-  newMessageBody: string
-}
+//
+// export type MessagesType = {
+//   id: number
+//   message: string
+// }
 
 // export type RootStateType = {
 //   profilePage: PostsPageType
@@ -68,7 +56,6 @@ export type MessagePageType = {
 //
 // }
 
-export type ActionsTypes = PostActionTypes | SendActionTypes | UserActionType
 //
 //
 // const store: StoreType = {
@@ -119,4 +106,4 @@ export type ActionsTypes = PostActionTypes | SendActionTypes | UserActionType
 //     // this._renderEntireThree()
 //   }
 // }
-// export default store
+export default {}

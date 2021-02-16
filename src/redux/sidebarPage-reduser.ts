@@ -1,4 +1,4 @@
-import {ActionsTypes, SidebarPageType} from "./store";
+import {ActionsTypes, SidebarPageType} from "./entities";
 
 
 const initialState:SidebarPageType = {
