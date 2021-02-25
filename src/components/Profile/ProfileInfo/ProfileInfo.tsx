@@ -34,7 +34,7 @@ export function ProfileInfo(props:ProfileInfoPropsType) {
               <div> {props.profile.contacts.facebook}</div>
               <p> {props.profile.fullName}</p>
               <b> {props.profile.userId}</b>
-                ava+descriptions
+                ava+description
             </div>
         </div>
     )
